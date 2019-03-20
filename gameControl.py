@@ -1,25 +1,37 @@
 import numpy as np
+import time
 
-gameBoard0 = np.array([[1,1,1,1,0],
-             [1,1,0,0,0],
-             [1,0,1,0,0],
-             [1,0,0,1,0],
-             [1,0,0,0,0]])
+player1 = np.array([[0,0,0,0,0],
+             [0,0,0,0,0],
+             [0,0,0,0,0],
+             [0,0,0,0,0],
+             [0,0,0,0,0]])
+player2 = np.array([[0,0,0,0,0],
+             [0,0,0,0,0],
+             [0,0,0,0,0],
+             [0,0,0,0,0],
+             [0,0,0,0,0]])
+'''
+test0 = np.array([[0,0,0,0,1],
+             [0,0,0,0,1],
+             [0,0,0,0,1],
+             [0,0,0,0,1],
+             [0,0,0,0,1]])
 
-gameFull = np.array([[1,1,1,1,1],
+test1 = np.array([[1,1,1,1,1],
              [1,1,1,1,1],
              [1,1,1,1,1],
              [1,1,1,1,1],
              [1,1,1,1,1]])
 
-
-#print (np.sum(gameBoard3))
-#print (gameBoard0[2][2])
-
-
+#winner = False
+#gameMode = Standard or Full
+'''
 #victory conditions
 def victoryChecker(gameBoard):
-    if gameBoard[0][0] + gameBoard[1][1] + gameBoard[2][2] + gameBoard[3][3] + gameBoard[4][4] == 5:
+    if np.sum(gameBoard) == 25:
+        return "DOMINATION VICTORY"
+    elif gameBoard[0][0] + gameBoard[1][1] + gameBoard[2][2] + gameBoard[3][3] + gameBoard[4][4] == 5:
         print("RIGHT DIAGONAL VICTORY")
     elif gameBoard[0][4] + gameBoard[1][3] + gameBoard[2][2] + gameBoard[3][1] + gameBoard[4][0] == 5:
         print("LEFT DIAGONAL VICTORY")
@@ -44,14 +56,13 @@ def victoryChecker(gameBoard):
     elif np.sum(gameBoard[:,4]) == 5:
         print("FIFTH COL VICTORY")
     else:
-        print("NO VICTORY")
+        return "NO VICTORY"
 
 
 def victoryFull(gameBoard):
     if np.sum(gameBoard) == 25:
         print("DOMINATION VICTORY")
-    else:
-        print("NO VICTORY")
+    
 
 '''
 def fourCorners(gameBoard):
@@ -59,13 +70,13 @@ def fourCorners(gameBoard):
         print("FOUR CORNERS VICTORY")
     else:
         print("NO VICTORY")
-
-
-         elif gameBoard[0][0] + gameBoard[0][1] + gameBoard[0][2] + gameBoard[0][3] + gameBoard[0][4] == 5:
-        print("FIRST ROW VICTORY")
-
-        elif gameBoard[0][0] + gameBoard[1][0] + gameBoard[2][0] + gameBoard[3][0] + gameBoard[4][0] == 5:
 '''
 
-#vicFull(gameFull)
-victoryChecker(gameBoard0)
+#victoryFull(test0)
+#victoryChecker(test1)
+
+start = time.time()
+product = victoryChecker(player1)
+elapsed = (time.time() - start)
+
+print ("result %s returned in %s seconds." % (product,elapsed))
